@@ -1,15 +1,16 @@
 package com.example.cyldao.utils;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.example.cyldao.AnalysJson;
 import com.example.cyldao.dao.BaseType;
 import com.example.cyldao.dao.CustomType;
 import com.example.cyldao.dao.ListType;
+import com.example.model.VideoModel;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class MyClass {
@@ -20,7 +21,7 @@ public class MyClass {
 
 
     public static void main(String[] data) {
-        Class<?> topModelClass = String.class;
+        Class<?> topModelClass = VideoModel.class;
         AnalysJson analysJson = new AnalysJson(topModelClass);
 //        analysJson.setCustomType(AnalysJson.CustomClassType.Main);
         handleClass(analysJson);

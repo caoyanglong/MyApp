@@ -18,6 +18,7 @@ public class ListType extends MyTpye {
         super(field, cName);
         this.arrayName = fieldName+"Array";
         String listName = field.getGenericType().getTypeName();
+        System.out.println("---------------------------->"+listName);
         listName = listName.substring(listName.indexOf("<")+1,listName.lastIndexOf(">"));
         try {
             onnerClass = Class.forName(listName);
