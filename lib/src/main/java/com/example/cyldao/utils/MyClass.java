@@ -1,4 +1,4 @@
-package cyldao.utils;
+package com.example.cyldao.utils;
 
 
 import java.util.ArrayList;
@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import cyldao.AnalysJson;
-import cyldao.dao.BaseType;
-import cyldao.dao.CustomType;
-import cyldao.dao.ListType;
+import com.example.cyldao.AnalysJson;
+import com.example.cyldao.dao.BaseType;
+import com.example.cyldao.dao.CustomType;
+import com.example.cyldao.dao.ListType;
 
 
 public class MyClass {

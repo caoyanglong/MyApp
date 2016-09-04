@@ -1,15 +1,15 @@
-package cyldao;
+package com.example.cyldao;
 
+
+import com.example.cyldao.dao.BaseType;
+import com.example.cyldao.dao.CustomType;
+import com.example.cyldao.dao.ListType;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import cyldao.dao.BaseType;
-import cyldao.dao.CustomType;
-import cyldao.dao.ListType;
 
 /**
  * Created by CYL on 16-7-13.

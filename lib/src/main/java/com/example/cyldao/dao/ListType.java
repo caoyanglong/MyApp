@@ -1,9 +1,9 @@
-package cyldao.dao;
+package com.example.cyldao.dao;
 
+
+import com.example.cyldao.AnalysJson;
 
 import java.lang.reflect.Field;
-
-import cyldao.AnalysJson;
 
 /**
  * Created by CYL on 16-7-13.
