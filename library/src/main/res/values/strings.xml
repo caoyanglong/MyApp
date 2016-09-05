@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CylLibrary</string>
+    <string name="str_no_more">没有更多</string>
+    <string name="str_load_more">正在加载更多...</string>
 </resources>

@@ -1,53 +1,77 @@
 package com.cyl.library.myapp;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 
-public class MainActivity extends AppCompatActivity {
+import com.cyl.cyllibrary.widgets.EndlessRecyclerOnScrollListener;
+import com.cyl.cyllibrary.widgets.HeaderViewRecyclerAdapter;
+import com.cyl.cyllibrary.widgets.LoadMoreView;
+import com.cyl.cyllibrary.widgets.LoadRecyclerView;
+import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity implements EndlessRecyclerOnScrollListener.RvLoadMoreListener{
+    private LoadRecyclerView loadRecyclerView;
+    private LoadMoreView moreView;
+    private List<String> icons = new ArrayList<>();
+    private HeaderViewRecyclerAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        setContentView(R.layout.listview_layout);
+        for (int i=0;i<10;i++){
+            icons.add("http://img2.imgtn.bdimg.com/it/u=4206774177,4196230443&fm=21&gp=0.jpg");
+        }
+        loadRecyclerView = (LoadRecyclerView) findViewById(R.id.loadmore_recylerview);
+        loadRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        moreView = new LoadMoreView(getApplicationContext(),loadRecyclerView);
+        adapter = new HeaderViewRecyclerAdapter(new MyAdapter());
+        adapter.addFooterView(moreView.getFooterView());
+        loadRecyclerView.setRvLoadMoreListener(this);
+        loadRecyclerView.resetMore();
+        loadRecyclerView.setAdapter(adapter);
+//        loadRecyclerView.setAdapter();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    private final class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
+        @Override
+        public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return new MyViewHolder(getLayoutInflater().inflate(R.layout.listview_item,parent,false));
         }
 
-        return super.onOptionsItemSelected(item);
+        @Override
+        public void onBindViewHolder(MyViewHolder holder, int position) {
+            Picasso.with(getBaseContext()).load(icons.get(position)).into(holder.icon);
+        }
+
+        @Override
+        public int getItemCount() {
+            return icons.size();
+        }
+
+        public final class MyViewHolder extends RecyclerView.ViewHolder{
+            private ImageView icon;
+            public MyViewHolder(View itemView) {
+                super(itemView);
+                icon = (ImageView) itemView.findViewById(R.id.icon);
+            }
+
+        }
+    }
+
+    @Override
+    public void onLoadMore(int currentPage) {
+        for (int i=0;i<10;i++){
+            icons.add("http://img2.imgtn.bdimg.com/it/u=4206774177,4196230443&fm=21&gp=0.jpg");
+        }
     }
 }
