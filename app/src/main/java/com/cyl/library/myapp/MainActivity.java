@@ -35,9 +35,11 @@ public class MainActivity extends AppCompatActivity implements EndlessRecyclerOn
         moreView = new LoadMoreView(getApplicationContext(),loadRecyclerView);
         adapter = new HeaderViewRecyclerAdapter(new MyAdapter());
         adapter.addFooterView(moreView.getFooterView());
+
+
+        loadRecyclerView.setAdapter(adapter);
         loadRecyclerView.setRvLoadMoreListener(this);
         loadRecyclerView.resetMore();
-        loadRecyclerView.setAdapter(adapter);
 //        loadRecyclerView.setAdapter();
     }
 
